@@ -2,12 +2,12 @@ process.loadEnvFile()
 const express = require ('express')
 const { validarGranjaParcialmente, validarGranja } = require('./src/validacion.js')
 const app = express()
-const connectDB = require('./src/database.js');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
 const morgan = require('morgan'); 
 const { buscarPorNombre } = require('./src/funcionesExternas.js');
 const port = process.env.PORT || 3000
+const connectDB = require('./src/database.js');
 
 
 // Funcion para conectarse a la base de datos
@@ -25,10 +25,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware para manejar rutas no existentes
-app.use((req, res) => {
-    res.status(404).json({ mensaje: 'Ruta no encontrada' });
-});
 
 
 //--------A PARTIR DE ACA CRUD----------
@@ -184,6 +180,12 @@ app.get('/frutasyverduras/:id', async (req, res) => {
           }
   })
   
+// Middleware para manejar rutas no existentes
+app.use((req, res) => {
+    res.status(404).json({ mensaje: 'Ruta no encontrada' });
+});
+
+
   
   app.listen(port, () => {
       console.log(`Servidor corriendo en puerto:  ${port}`)

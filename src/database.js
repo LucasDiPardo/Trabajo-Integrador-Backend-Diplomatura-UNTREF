@@ -1,5 +1,3 @@
-// src/mongoose.js
-//require('dotenv').config();
 process.loadEnvFile()
 
 
@@ -15,18 +13,5 @@ const connectDB = () => {
     .then(() => console.log('Conectado a MongoDB'))
     .catch((err) => console.log('Error al conectarse : ', err))
 }
-
-/*
-async function disconnectFromMongoDB() {
-  try {
-    if (client) {
-      await client.close()
-      console.log('Desconectandose de mongoDB')
-    }
-  } catch (error) {
-    console.error('Error al desconectar de MongoDB')
-  }
-}
-*/
 
 module.exports = connectDB
