@@ -39,9 +39,22 @@ Dentro archivos para las conexiones y modelos
 git init
 git add .
 git commit -m "Primera subida"
-git branch -M main
-git remote add origin https://github.com/tu-usuario/tu-repositorio-fork.git
 git push -u origin main
+
+### Base de Datos
+Descargamos el json elegido
+Desde Mongoose creamos una nueva base de datos, con su nombre de coleccion
+Importamos el json descargado
+Dentro de la Carpeta scr del proyecto creamos el js para el modelo y el js para la conexion
+
+### Agregar Variables
+Ya sean de las librerias, constantes o funciones externas
+
+### Middleware
+Middleware solicitudes entrantes JSON
+Middleware para solicitudes HTTP en node
+Middleware para conectar la base de datos a la solicitud
+Middleware para manejar rutas no existentes
 
 
 ## Funcionalidades del CRUD
