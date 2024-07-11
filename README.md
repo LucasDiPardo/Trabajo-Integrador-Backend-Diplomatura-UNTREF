@@ -15,6 +15,35 @@ Podrás usar alguno de los datasets JSON proporcionados, o crear uno propio que 
 - **prendas.json**: Prendas de vestir.
 - **supermercado.json**: Productos de supermercado.
 
+
+### Hacer Fork del proyecto
+git clone https://github.com/tu-usuario/tu-repositorio-fork.git
+cd CRUD-en-mongoDB-y-Express
+
+### Intalar Librerias y dependencias
+Instalo las librerias y dependencias necesarias para el proyecto, en este caso
+npm install express mongoose node 
+npm install morgan(ver)
+npm installa zod (schemas y validacion)
+
+### Crear archivos y carpetas
+En la raiz del proyecto creo app.js
+.gitignore - Lo creo para agregar los archivos que no quieron que se suban al repositorio
+node_modules
+.env - Para cargar dentro las Variables de Entorno
+PORT, MONGODB_URLSTRING, DATABASE_NAME, COLLECTION_NAME, SECRET_KEY
+Crear Carpeta src
+Dentro archivos para las conexiones y modelos
+
+### Repositorio
+git init
+git add .
+git commit -m "Primera subida"
+git branch -M main
+git remote add origin https://github.com/tu-usuario/tu-repositorio-fork.git
+git push -u origin main
+
+
 ## Funcionalidades del CRUD
 
 1. **Obtener todos los productos**
