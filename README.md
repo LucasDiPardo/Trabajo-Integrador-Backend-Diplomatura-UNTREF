@@ -35,11 +35,6 @@ PORT, MONGODB_URLSTRING, DATABASE_NAME, COLLECTION_NAME, SECRET_KEY
 Crear Carpeta src
 Dentro archivos para las conexiones y modelos
 
-### Repositorio
-git init
-git add .
-git commit -m "Primera subida"
-git push -u origin main
 
 ### Base de Datos
 Descargamos el json elegido
