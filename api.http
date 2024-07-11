@@ -1,0 +1,24 @@
+###home inicial
+GET http://127.0.0.1:3000
+
+###1 - Devuelte todas
+GET http://127.0.0.1:3000/frutasyverduras
+
+
+###2 - devuelve verdura id 
+http://127.0.0.1:3000/frutasyverduras/667d7abc10591355a1e13d79
+
+###3 - filtra productos por nombre(busqueda parcial)
+GET http://127.0.0.1:3000/frutasyverduras?nombre=banana
+
+
+### 4 - POST nueva granja
+POST http://127.0.0.1:3000/frutasyverduras
+Content-Type: application/json
+{
+    "nombre": "prueba",
+    "precio": 1000,
+    "categoria": "prueba",
+}
+
+
