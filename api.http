@@ -1,24 +1,67 @@
 ###home inicial
 GET http://127.0.0.1:3000
 
-###1 - Devuelte todas
+###1 - Devuelte todas las frutas y verduras
 GET http://127.0.0.1:3000/frutasyverduras
 
 
-###2 - devuelve verdura id 
+###2 - devuelve verdura id - Fruta Valida
 http://127.0.0.1:3000/frutasyverduras/667d7abc10591355a1e13d79
 
-###3 - filtra productos por nombre(busqueda parcial)
-GET http://127.0.0.1:3000/frutasyverduras?nombre=banana
+###2 - devuelve verdura id - Fruta NO Valida
+http://127.0.0.1:3000/frutasyverduras/667d7abc10591355a1e13d30
 
 
-### 4 - POST nueva granja
+
+###3 - filtra productos por nombre(busqueda parcial) - Fruta Encontrada
+GET http://127.0.0.1:3000/frutasyverduras?nombre=man
+
+###3 - filtra productos por nombre(busqueda parcial) - Fruta NO Encontrada
+GET http://127.0.0.1:3000/frutasyverduras?nombre=zac
+
+
+### 4 - POST nueva granja - Creacion correcta
 POST http://127.0.0.1:3000/frutasyverduras
 Content-Type: application/json
+
 {
-    "nombre": "prueba",
+    "nombre": "pruebaaaa",
     "precio": 1000,
-    "categoria": "prueba",
+    "categoria": "Fruta"
 }
+
+### 4 - POST nueva granja - Error de categoria
+POST http://127.0.0.1:3000/frutasyverduras
+Content-Type: application/json
+
+{
+    "nombre": "pruebaaaa",
+    "precio": 1000,
+    "categoria": "Fru"
+}
+
+### 5 Modificar el precio de un producto (exitoso)
+PATCH http://127.0.0.1:3000/frutasyverduras/667d7abc10591355a1e13d79
+Content-Type: application/json
+
+{
+    "precio": 1500
+}
+
+### 5 Modificar el precio de un producto (fallido)
+PATCH http://127.0.0.1:3000/frutasyverduras/667d7abc10591355a1e13d79
+Content-Type: application/json
+
+{
+    "precio": "mil quinientos"
+}
+
+
+### 6 Borrar un producto (funciona)
+DELETE http://127.0.0.1:3000/frutasyverduras/66a931cf595251edd42dd91e
+
+
+### Borrar un producto (fallido - ID no válido)
+DELETE http://127.0.0.1:3000/frutasyverduras/64bfe9f1e83b3c22f8d4a67z
 
 

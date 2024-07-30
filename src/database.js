@@ -3,7 +3,7 @@ process.loadEnvFile()
 
 const mongoose = require('mongoose')
 
-//Obtenemos la URI desde las variables de entorno
+//Obtener la URI desde las variables de entorno
 const URI = process.env.MONGODB_URLSTRING
 const DATABASE_NAME = process.env.DATABASE_NAME
 // Conectar a MongoDB usando Mongoose

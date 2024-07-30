@@ -22,14 +22,12 @@ cd CRUD-en-mongoDB-y-Express
 
 ### Intalar Librerias y dependencias
 Instalo las librerias y dependencias necesarias para el proyecto, en este caso
-npm install express mongoose node 
-npm install morgan(ver)
+npm install express mongoose node morgan
 npm installa zod (schemas y validacion)
 
-### Crear archivos y carpetas
+### Crear archivos y carpetas (si es que ya no estan creados por el fork)
 En la raiz del proyecto creo app.js
-.gitignore - Lo creo para agregar los archivos que no quieron que se suban al repositorio
-node_modules
+.gitignore - Lo creo para agregar los archivos que no quieron que se suban al repositorio ej: node_modules
 .env - Para cargar dentro las Variables de Entorno
 PORT, MONGODB_URLSTRING, DATABASE_NAME, COLLECTION_NAME, SECRET_KEY
 Crear Carpeta src

@@ -31,26 +31,27 @@ app.use((req, res, next) => {
 
 //home de la pagina
 app.get('/',  (req, res) => {  
-    res.send('Hola Mundo!')
+    res.send('Funcionando')
 })
 
 
-//1 - Obtener todos los productos
+//1 - Obtener todos los productos - lo manejo por Query
 //Endpoint para leer todos los productos de la colección.
 //Control de errores para manejar la indisponibilidad de la base de datos.
 // 3 - Filtrar productos
 //Endpoint para filtrar productos por nombre (búsqueda parcial).
 //Control de errores para manejar coincidencias no encontradas o problemas de conexión.
 app.get('/frutasyverduras', async (req, res) => {
-    const { nombre } = req.query;
-    console.log(nombre)
+    const {nombre} = req.query;
     try {
         const fyv = !nombre
             ? await req.db.find().toArray()
             : await req.db
                 .find({ nombre: { $regex: nombre, $options: 'i' } })
                 .toArray();
-  
+        if (fyv.length === 0) {
+            return res.status(404).json({ error: 'Fruta o verdura no encontrada' });
+        }
         res.json(fyv);
     }catch (error) {
         res.status(500).send('Error al obtener las frutas y verduras');
@@ -59,17 +60,17 @@ app.get('/frutasyverduras', async (req, res) => {
 
 
   
-//2 - Obtener un producto
+//2 - Obtener un producto - Lo manejo con Params
 //Endpoint para obtener un producto por su ID.
 //Control de errores para manejar casos en que el producto no se encuentre o la base de datos no esté disponible.
 app.get('/frutasyverduras/:id', async (req, res) => {
     const { id } = req.params;
     try {      
-        // Verifica que el ID sea un ObjectId valido
+        // verifica que el ID sea un ObjectId valido
         if (!ObjectId.isValid(id)) {
             return res.status(400).send('ID inválido');
         }
-        // Convierte el ID a ObjectId
+        // convierte el ID a ObjectId
         const objectId = new ObjectId(id);
         const fyv = await req.db.findOne({ _id: objectId });       
 
@@ -90,7 +91,7 @@ app.get('/frutasyverduras/:id', async (req, res) => {
 //Generación de un código numérico para el nuevo producto.
 
 app.post('/frutasyverduras' ,async (req, res) => {
-    const { nombre} = req.body;    
+    const {nombre} = req.body;    
     const resultado = validarGranja(req.body)
     
     if (!resultado.success) return res.status(400).json(resultado.error.message)
@@ -113,7 +114,7 @@ app.post('/frutasyverduras' ,async (req, res) => {
         res.status(201).json(nuevaVerdura)
         console.log("Fruta/Verdura creada con Exito!")
     }catch (error) {
-        return res.status(500).json({ message: 'Error al agregar la Frutao Verdura' })
+        return res.status(500).json({ message: 'Error al agregar la Fruta o Verdura' })
     }
 })
 
@@ -126,6 +127,7 @@ Control de errores para manejar problemas durante la actualización.
 app.patch('/frutasyverduras/:id', async (req, res) => {
     const resultado = validarGranjaParcialmente(req.body)    
     
+    //Si hay errores en la validacion
     if (!resultado.success) return res.status(400).json(resultado.error.message)
 
     const { id } = req.params
@@ -174,7 +176,9 @@ app.delete('/frutasyverduras/:id', async (req, res) => {
             return res.status(500).json({ message: 'Error al eliminar la Fruta o Verdura'})
         }
 })
-  
+
+
+
 // Middleware para manejar rutas no existentes (lo pongo aca xq sino me toma todas las rutas)
 app.use((req, res) => {
     res.status(404).json({ mensaje: 'Ruta no encontrada' });
